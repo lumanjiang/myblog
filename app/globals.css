@@ -1,0 +1,388 @@
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --text: #1a1a18;
+  --text-soft: #5c5c56;
+  --text-faint: #8f8f88;
+  --line: #e6e4df;
+  --accent: #b8502a;
+  --code-bg: #f3f1ec;
+  --radius: 10px;
+  --maxw: 680px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14140f;
+    --surface: #1c1c17;
+    --text: #ecebe4;
+    --text-soft: #a8a69c;
+    --text-faint: #78766d;
+    --line: #2e2e26;
+    --accent: #e08a5f;
+    --code-bg: #22221b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 40px 0 44px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.nav a {
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+main {
+  flex: 1;
+}
+
+/* ---------- home ---------- */
+
+.intro {
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+}
+
+.section-label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 56px 0 20px;
+  font-weight: 500;
+}
+
+/* ---------- post list ---------- */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-item:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.post-item a {
+  text-decoration: none;
+  display: block;
+}
+
+.post-item-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  transition: color 0.15s;
+}
+
+.post-item a:hover .post-item-title {
+  color: var(--accent);
+}
+
+.post-item-meta {
+  font-size: 13px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-item-summary {
+  font-size: 14.5px;
+  color: var(--text-soft);
+  margin: 6px 0 0;
+  line-height: 1.65;
+}
+
+.more-link {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+}
+
+.empty {
+  color: var(--text-faint);
+  font-size: 15px;
+  padding: 24px 0;
+}
+
+/* ---------- article ---------- */
+
+.article-header {
+  margin-bottom: 36px;
+}
+
+.article-title {
+  font-size: 30px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.article-meta {
+  font-size: 13.5px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--text-soft);
+  background: var(--code-bg);
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+
+.prose {
+  font-size: 16.5px;
+}
+
+.prose h2 {
+  font-size: 21px;
+  letter-spacing: -0.015em;
+  margin: 44px 0 14px;
+  line-height: 1.4;
+}
+
+.prose h3 {
+  font-size: 18px;
+  margin: 32px 0 10px;
+  line-height: 1.45;
+}
+
+.prose p {
+  margin: 0 0 20px;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.prose a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 22px;
+  margin: 0 0 20px;
+}
+
+.prose li {
+  margin-bottom: 7px;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+  margin: 28px 0;
+}
+
+.prose blockquote {
+  margin: 24px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--line);
+  color: var(--text-soft);
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 0 0 22px;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 13.5px;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  margin: 0 0 22px;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.prose th {
+  background: var(--code-bg);
+  font-weight: 600;
+}
+
+/* ---------- article footer nav ---------- */
+
+.article-nav {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.article-nav a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.article-nav a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .shell {
+    padding: 0 20px;
+  }
+  .site-header {
+    padding: 28px 0 32px;
+  }
+  .article-title {
+    font-size: 25px;
+  }
+  .intro {
+    font-size: 17.5px;
+  }
+}

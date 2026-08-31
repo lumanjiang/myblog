@@ -1,0 +1,52 @@
+# ↓↓↓ 部署前必须改这一行：换成你自己的 GitHub 用户名/仓库名 ↓↓↓
+backend:
+  name: github
+  repo: 你的GitHub用户名/myblog
+  branch: main
+  base_url: https://你的网址.vercel.app
+  auth_endpoint: api/auth
+
+# 本地开发时打开下面这行（去掉 # ），可以不用登录直接试写
+# local_backend: true
+
+media_folder: public/images
+public_folder: /images
+
+locale: zh_Hans
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: content/posts
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    editor:
+      preview: false
+    fields:
+      - { name: title, label: 标题, widget: string }
+      - { name: date, label: 日期, widget: datetime }
+      - {
+          name: summary,
+          label: 摘要,
+          widget: text,
+          required: false,
+          hint: 显示在文章列表里的一句话简介，可以不填,
+        }
+      - {
+          name: tags,
+          label: 标签,
+          widget: list,
+          required: false,
+          hint: 回车分隔，可以不填,
+        }
+      - {
+          name: draft,
+          label: 草稿（勾上就不会显示在网站上）,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - { name: body, label: 正文, widget: markdown }
