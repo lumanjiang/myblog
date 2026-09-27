@@ -1,35 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&display=swap');
+
 :root {
-  --bg: #fbfbfa;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --text: #1a1a18;
+  --text: #161614;
   --text-soft: #5c5c56;
-  --text-faint: #8f8f88;
-  --line: #e6e4df;
-  --accent: #b8502a;
-  --code-bg: #f3f1ec;
+  --text-faint: #94948c;
+  --line: #ebeae4;
   --radius: 10px;
-  --maxw: 680px;
+  --maxw: 720px;
+
+  /* 杂志感强调色板，给不同栏目/标签用 */
+  --c1: #c8462b; /* 朱红 */
+  --c2: #1d6f5c; /* 墨绿 */
+  --c3: #2f5ed6; /* 靛蓝 */
+  --c4: #c4881a; /* 琥珀 */
+  --c5: #8c3fa8; /* 紫 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14140f;
-    --surface: #1c1c17;
-    --text: #ecebe4;
-    --text-soft: #a8a69c;
-    --text-faint: #78766d;
-    --line: #2e2e26;
-    --accent: #e08a5f;
-    --code-bg: #22221b;
+    --bg: #131311;
+    --surface: #131311;
+    --text: #f0efe9;
+    --text-soft: #b3b2a8;
+    --text-faint: #767569;
+    --line: #2c2b25;
+
+    --c1: #e37058;
+    --c2: #4fa78e;
+    --c3: #7f9dff;
+    --c4: #e0ab52;
+    --c5: #c07fdb;
   }
 }
 
 * {
   box-sizing: border-box;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -47,6 +54,10 @@ a {
   color: inherit;
 }
 
+.serif {
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+}
+
 .shell {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -60,34 +71,51 @@ a {
 
 .site-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 40px 0 44px;
+  padding: 36px 0 8px;
   flex-wrap: wrap;
+  border-bottom: 3px solid var(--text);
+  margin-bottom: 12px;
 }
 
 .brand {
-  font-size: 17px;
-  font-weight: 600;
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+  font-size: 26px;
+  font-weight: 700;
   letter-spacing: -0.01em;
   text-decoration: none;
+  padding-bottom: 16px;
 }
 
 .nav {
   display: flex;
-  gap: 20px;
-  font-size: 14px;
+  gap: 6px;
+  font-size: 13.5px;
+  padding-bottom: 12px;
 }
 
 .nav a {
-  color: var(--text-soft);
   text-decoration: none;
-  transition: color 0.15s;
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
 }
 
-.nav a:hover {
-  color: var(--accent);
+.nav a:nth-child(1):hover {
+  background: color-mix(in srgb, var(--c1) 16%, transparent);
+  color: var(--c1);
+}
+.nav a:nth-child(2):hover {
+  background: color-mix(in srgb, var(--c3) 16%, transparent);
+  color: var(--c3);
+}
+.nav a:nth-child(3):hover {
+  background: color-mix(in srgb, var(--c2) 16%, transparent);
+  color: var(--c2);
 }
 
 main {
@@ -97,23 +125,37 @@ main {
 /* ---------- home ---------- */
 
 .intro {
-  font-size: 19px;
-  line-height: 1.7;
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1.55;
   color: var(--text);
-  margin: 0 0 8px;
+  margin: 28px 0 4px;
   letter-spacing: -0.005em;
+  max-width: 56ch;
 }
 
 .section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-faint);
-  margin: 56px 0 20px;
-  font-weight: 500;
+  color: var(--text);
+  margin: 52px 0 8px;
+  font-weight: 700;
 }
 
-/* ---------- post list ---------- */
+.section-label::before {
+  content: "";
+  width: 22px;
+  height: 3px;
+  background: var(--c1);
+  display: inline-block;
+}
+
+/* ---------- post list (magazine) ---------- */
 
 .post-list {
   list-style: none;
@@ -122,12 +164,23 @@ main {
 }
 
 .post-item {
-  padding: 18px 0;
+  padding: 26px 0;
   border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 18px;
 }
 
 .post-item:first-child {
   border-top: 1px solid var(--line);
+}
+
+.post-item-index {
+  font-family: "Newsreader", serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-faint);
+  padding-top: 3px;
 }
 
 .post-item a {
@@ -135,41 +188,57 @@ main {
   display: block;
 }
 
+.post-item-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+
 .post-item-title {
-  font-size: 17px;
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
+  line-height: 1.3;
   transition: color 0.15s;
 }
 
 .post-item a:hover .post-item-title {
-  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
 }
 
 .post-item-meta {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
 
 .post-item-summary {
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--text-soft);
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   line-height: 1.65;
+  max-width: 58ch;
 }
 
 .more-link {
   display: inline-block;
-  margin-top: 24px;
-  font-size: 14px;
-  color: var(--accent);
+  margin-top: 28px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
   text-decoration: none;
-}
-
-.more-link:hover {
-  text-decoration: underline;
+  border-bottom: 2px solid var(--c1);
+  padding-bottom: 2px;
 }
 
 .empty {
@@ -181,77 +250,106 @@ main {
 /* ---------- article ---------- */
 
 .article-header {
-  margin-bottom: 36px;
+  margin: 20px 0 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
 }
 
 .article-title {
-  font-size: 30px;
-  line-height: 1.3;
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+  font-size: 40px;
+  line-height: 1.2;
   letter-spacing: -0.02em;
-  margin: 0 0 10px;
+  margin: 10px 0 14px;
   font-weight: 700;
 }
 
 .article-meta {
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
 
 .tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 14px;
+  margin-top: 18px;
 }
 
 .tag {
-  font-size: 12px;
-  color: var(--text-soft);
-  background: var(--code-bg);
-  padding: 3px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--c1);
+  background: color-mix(in srgb, var(--c1) 12%, transparent);
+  padding: 4px 11px;
   border-radius: 100px;
 }
 
+.tag:nth-of-type(2n) {
+  color: var(--c3);
+  background: color-mix(in srgb, var(--c3) 12%, transparent);
+}
+
+.tag:nth-of-type(3n) {
+  color: var(--c2);
+  background: color-mix(in srgb, var(--c2) 12%, transparent);
+}
+
 .prose {
-  font-size: 16.5px;
+  font-size: 17.5px;
+}
+
+.prose p:first-of-type::first-letter {
+  font-family: "Newsreader", serif;
+  font-size: 3.4em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  padding: 6px 8px 0 0;
+  color: var(--c1);
 }
 
 .prose h2 {
-  font-size: 21px;
+  font-family: "Newsreader", "Source Han Serif SC", "Songti SC", serif;
+  font-size: 26px;
   letter-spacing: -0.015em;
-  margin: 44px 0 14px;
+  margin: 48px 0 14px;
   line-height: 1.4;
+  font-weight: 700;
 }
 
 .prose h3 {
-  font-size: 18px;
+  font-size: 19px;
   margin: 32px 0 10px;
   line-height: 1.45;
+  font-weight: 700;
 }
 
 .prose p {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
 }
 
 .prose a {
-  color: var(--accent);
+  color: var(--c1);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--c1) 40%, transparent);
 }
 
 .prose a:hover {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--c1);
 }
 
 .prose ul,
 .prose ol {
   padding-left: 22px;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
 }
 
 .prose li {
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
 .prose img {
@@ -259,14 +357,17 @@ main {
   height: auto;
   border-radius: var(--radius);
   display: block;
-  margin: 28px 0;
+  margin: 30px 0;
 }
 
 .prose blockquote {
-  margin: 24px 0;
-  padding: 2px 0 2px 18px;
-  border-left: 2px solid var(--line);
+  margin: 28px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid var(--c1);
   color: var(--text-soft);
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.1em;
 }
 
 .prose blockquote p:last-child {
@@ -275,19 +376,18 @@ main {
 
 .prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.875em;
-  background: var(--code-bg);
-  padding: 2px 5px;
+  font-size: 0.85em;
+  background: color-mix(in srgb, var(--c3) 10%, transparent);
+  padding: 2px 6px;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: var(--code-bg);
-  border: 1px solid var(--line);
+  background: #16161a;
   border-radius: var(--radius);
-  padding: 16px 18px;
+  padding: 18px 20px;
   overflow-x: auto;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   line-height: 1.6;
 }
 
@@ -295,19 +395,20 @@ main {
   background: none;
   padding: 0;
   font-size: 13.5px;
+  color: #eee;
 }
 
 .prose hr {
   border: none;
   border-top: 1px solid var(--line);
-  margin: 40px 0;
+  margin: 44px 0;
 }
 
 .prose table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14.5px;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   display: block;
   overflow-x: auto;
 }
@@ -315,27 +416,28 @@ main {
 .prose th,
 .prose td {
   border: 1px solid var(--line);
-  padding: 8px 12px;
+  padding: 9px 13px;
   text-align: left;
 }
 
 .prose th {
-  background: var(--code-bg);
-  font-weight: 600;
+  background: color-mix(in srgb, var(--c1) 6%, transparent);
+  font-weight: 700;
 }
 
 /* ---------- article footer nav ---------- */
 
 .article-nav {
-  margin-top: 56px;
+  margin-top: 60px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 14px;
 }
 
 .article-nav a {
-  color: var(--accent);
+  color: var(--c1);
   text-decoration: none;
+  font-weight: 700;
 }
 
 .article-nav a:hover {
@@ -350,26 +452,27 @@ main {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 80px;
-  padding: 24px 0 40px;
-  border-top: 1px solid var(--line);
-  font-size: 13px;
+  margin-top: 88px;
+  padding: 26px 0 44px;
+  border-top: 3px solid var(--text);
+  font-size: 12.5px;
   color: var(--text-faint);
 }
 
 .footer-links {
   display: flex;
-  gap: 16px;
+  gap: 18px;
 }
 
 .footer-links a {
   color: var(--text-faint);
   text-decoration: none;
+  font-weight: 600;
   transition: color 0.15s;
 }
 
 .footer-links a:hover {
-  color: var(--accent);
+  color: var(--c1);
 }
 
 @media (max-width: 560px) {
@@ -377,12 +480,21 @@ main {
     padding: 0 20px;
   }
   .site-header {
-    padding: 28px 0 32px;
+    padding: 26px 0 4px;
+  }
+  .brand {
+    font-size: 22px;
   }
   .article-title {
-    font-size: 25px;
+    font-size: 30px;
   }
   .intro {
-    font-size: 17.5px;
+    font-size: 20px;
+  }
+  .post-item {
+    grid-template-columns: 1fr;
+  }
+  .post-item-index {
+    display: none;
   }
 }
