@@ -1,9 +1,9 @@
 # ↓↓↓ 部署前必须改这一行：换成你自己的 GitHub 用户名/仓库名 ↓↓↓
 backend:
   name: github
-  repo: 你的GitHub用户名/myblog
+  repo: lumanjiang/myblog
   branch: main
-  base_url: https://你的网址.vercel.app
+  base_url: https://lumanjiang-blog.netlify.app
   auth_endpoint: api/auth
 
 # 本地开发时打开下面这行（去掉 # ），可以不用登录直接试写
